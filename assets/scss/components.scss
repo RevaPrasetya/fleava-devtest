@@ -1,0 +1,56 @@
+@import './_variables.scss';
+//Button Component
+.btn{
+    display: inline-flex;
+    gap: $rem_1_5;
+    padding: $rem_1 $rem_2;
+    width: fit-content;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10vw;
+    cursor: pointer;
+
+    font-size: $rem_1;
+    font-family: $text_font;
+
+    &.btn-primary{
+        background: $dark_green;
+        color: $white !important;
+        outline: none;
+        border: none;
+        path{
+            stroke: $white;
+        }
+        &.white{
+            background: $white;
+            color: $black !important;
+            path{
+                stroke: $black;
+            }
+        }
+    }
+    &.btn-secondary{
+        color: $black !important;
+        border: 1px solid $dark_green;
+        path{
+            stroke: $black;
+        }
+        &.white{
+            color: $white !important;
+            border: 1px solid $white;
+            path{
+                stroke: $white;
+            }
+        }
+    }
+}
+
+//Images
+figure{
+    img{
+        object-fit: cover;
+        object-position: center;
+        min-width: 100%;
+        height: 100%;
+    }
+}

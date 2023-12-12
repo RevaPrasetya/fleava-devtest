@@ -1,0 +1,98 @@
+@import './reset.scss';
+@import './fonts.scss';
+@import './variables.scss';
+@import './layout.scss';
+@import './components.scss';
+
+$hc: 1;
+// @each $heading_size, $hs in $heading_size{
+//     h#{$hc}{
+//         font-family: $heading_font;
+//         font-size: $hs;
+//         font-weight: normal;
+//     }
+//     $hc: $hc + 1;
+// }
+@each $h_v, $h_p in $h_size{
+    h#{$hc}{
+        font-family: $heading_font;
+        font-size: $h_v;
+        font-weight: normal;
+        @media screen and (max-width: $desktop_width) {
+            font-size: $h_p;
+        }
+    }
+    $hc: $hc + 1;
+}
+
+$c: 1;
+@each $is_v, $is_p in $indent_size{
+    h1,h2,h3,h4,h5,h6{
+        .indent-#{$c}{
+            padding-left: $is_v;
+
+            @media screen and (max-width: $desktop_width){
+                padding-left: $is_p;
+            }
+        }   
+    }
+    $c: $c + 1;
+}
+
+$mc: 0;
+@each $m_v, $m_p in $m_size{
+
+    .mt-#{$mc}{
+        margin-top: $m_v;
+        @media screen and (max-width: $desktop_width) {
+            margin-top: $m_p;
+        }
+    }
+
+    .mr-#{$mc}{
+        margin-right: $m_v;
+        @media screen and (max-width: $desktop_width) {
+            margin-right: $m_p;
+        }
+    }
+
+    .ml-#{$mc}{
+        margin-left: $m_v;
+        @media screen and (max-width: $desktop_width) {
+            margin-left: $m_p;
+        }
+    }
+
+    .mb-#{$mc}{
+        margin-bottom: $m_v;
+        @media screen and (max-width: $desktop_width) {
+            margin-bottom: $m_p;
+        }
+    }
+    
+
+    $mc: $mc + 1;
+}
+
+h1,h2,h3,h4,h5,h6{
+    font-family: $heading_font;
+
+    span.highlight{
+        color: $dark_chocolate !important;
+    }
+}
+body{
+    font-family: $text_font;
+}
+
+.slider{
+    position: relative;
+    overflow-x: hidden;
+    .slider-wrap{
+        display: flex;
+    }
+}
+
+p{
+    font-size: $rem_1;
+}
