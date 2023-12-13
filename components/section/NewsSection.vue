@@ -55,13 +55,9 @@
         <div class="section-header mb-3 d-flex items-center justify-between container">
             <h2>What's New</h2>
             
-            <a href="" class="btn btn-primary">
-                <div>Explore Now</div>
-                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 14 14" fill="none">
-                    <path d="M1.46753 1H13V12.5325" stroke="black" stroke-width="1.5"/>
-                    <path d="M13 1L1 13" stroke="black" stroke-width="1.5"/>
-                </svg>
-            </a>
+            <Button primary>
+                Explore Now
+            </Button>
         </div>
         <div class="slider">
             <div class="slider-wrap">
@@ -77,13 +73,9 @@
                         </div>
                         <h5 class="news-title">Facilisi suspendisse quis ametvel sed cursus gravida ultricies habitant</h5>
                         
-                        <a href="" class="btn btn-secondary">
-                            <div>Explore Now</div>
-                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 14 14" fill="none">
-                                <path d="M1.46753 1H13V12.5325" stroke="black" stroke-width="1.5"/>
-                                <path d="M13 1L1 13" stroke="black" stroke-width="1.5"/>
-                            </svg>
-                        </a>
+                        <Button :primary="false">
+                            Explore Now
+                        </Button>
                     </div>
                 </div>
                 <div class="slide">
@@ -98,13 +90,9 @@
                         </div>
                         <h5 class="news-title">Facilisi suspendisse quis ametvel sed cursus gravida ultricies habitant</h5>
                         
-                        <a href="" class="btn btn-secondary">
-                            <div>Explore Now</div>
-                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 14 14" fill="none">
-                                <path d="M1.46753 1H13V12.5325" stroke="black" stroke-width="1.5"/>
-                                <path d="M13 1L1 13" stroke="black" stroke-width="1.5"/>
-                            </svg>
-                        </a>
+                        <Button :primary="false">
+                            Explore Now
+                        </Button>
                     </div>
                 </div>
                 <div class="slide">
@@ -119,13 +107,9 @@
                         </div>
                         <h5 class="news-title">Facilisi suspendisse quis ametvel sed cursus gravida ultricies habitant</h5>
                         
-                        <a href="" class="btn btn-secondary">
-                            <div>Explore Now</div>
-                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 14 14" fill="none">
-                                <path d="M1.46753 1H13V12.5325" stroke="black" stroke-width="1.5"/>
-                                <path d="M13 1L1 13" stroke="black" stroke-width="1.5"/>
-                            </svg>
-                        </a>
+                        <Button :primary="false">
+                            Explore Now
+                        </Button>
                     </div>
                 </div>
             </div>
