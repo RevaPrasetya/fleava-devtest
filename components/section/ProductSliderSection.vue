@@ -1,5 +1,56 @@
+<script>
+    import {gsap} from "gsap";
+    import { ScrollTrigger } from "gsap/ScrollTrigger";
+    import {ref} from 'vue';
+
+    gsap.registerPlugin(ScrollTrigger);
+    let defaultEasing = 'cubic-bezier(0.65, 0, 0.35, 1)';
+
+    export default {
+        mounted: function() {
+            this.scrollAnimations();
+            this.revealAnimations();
+        },
+        methods: {
+            scrollAnimations(){
+
+                let clipSection = gsap.timeline({
+                    scrollTrigger:{
+                        trigger: '#products-section',
+                        // pin: true,
+                        // pinSpacing: false,
+                        start: 'top bottom',
+                        end: '+=800',
+                        scrub: 2,
+                        //markers: true,
+                    }
+                })
+                clipSection.to('#products-section',{
+                    clipPath:  'polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)',
+                    easing: defaultEasing,
+                } )
+                //clipSection.fromTo('#products-section h4',{scale: 1.1 }, {scale: 1 });
+
+            },
+            revealAnimations(){
+                let revealAnim = gsap.timeline({
+                    scrollTrigger:{
+                        trigger: '#products-section',
+                        start: 'top bottom',
+                        toggleActions: 'restart none restart none',
+                    }
+                })
+                revealAnim.set('#products-section h4',{autoAlpha: 0});
+                revealAnim.fromTo('#products-section h4', 1.3 ,{yPercent: 50, autoAlpha: 0}, {yPercent: 0, autoAlpha: 1, easing: defaultEasing}, .5)
+                .fromTo('#products-section .section-desc p', 1.3 ,{yPercent: 50, autoAlpha: 0}, {yPercent: 0, autoAlpha: 1, easing: defaultEasing}, 2);
+            }
+        }
+
+    }
+</script>
+
 <template>
-    <section id="product-section">
+    <section id="products-section">
         <div class="section-header">
             <div class="container">
                 <h4>A highly curated selection of <br> products we believe in</h4>
@@ -10,18 +61,45 @@
                 <div class="slide">
                     <div class="product-card">
                         <figure class="product-img">
+                            <img src="~/assets/img/product/product-1.jpg" alt="">
+                        </figure>
+                        <div class="product-details">
+                            <p class="product-label">OUR FEATURED PRODUCTS</p>
+                            <h2 class="product-title">Daily Skincare</h2>
+                            <Button primary white>
+                                Explore Now
+                            </Button>
+                        </div>
+                    </div>
+                </div>
+                <div class="slide slide-active">
+                    <div class="product-card">
+                        <figure class="product-img">
                             <img src="~/assets/img/product/product-3.jpg" alt="">
                         </figure>
                         <div class="product-details">
                             <p class="product-label">OUR FEATURED PRODUCTS</p>
                             <h2 class="product-title">Daily Skincare</h2>
-                            <a href="" class="btn btn-primary white">
-                                <div>Explore Now</div>
-                                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 14 14" fill="none">
-                                <path d="M1.46753 1H13V12.5325" stroke="black" stroke-width="1.5"/>
-                                <path d="M13 1L1 13" stroke="black" stroke-width="1.5"/>
-                                </svg>
-                            </a>
+                            
+                            <Button primary white>
+                                Explore Now
+                            </Button>
+                            
+                        </div>
+                    </div>
+                </div>
+                <div class="slide">
+                    <div class="product-card">
+                        <figure class="product-img">
+                            <img src="~/assets/img/product/product-2.jpg" alt="">
+                        </figure>
+                        <div class="product-details">
+                            <p class="product-label">OUR FEATURED PRODUCTS</p>
+                            <h2 class="product-title">Daily Skincare</h2>
+                            
+                            <Button primary white>
+                                Explore Now
+                            </Button>
                         </div>
                     </div>
                 </div>
@@ -38,11 +116,19 @@
 <style lang="scss" scoped>
     @import '~/assets/scss/_variables.scss';
 
-    #product-section{
+    #products-section{
         background: $dark_green;
+        clip-path: polygon(20% 0, 80% 0%, 80% 100%, 20% 100%);
+        overflow: hidden;
 
         h2,h4,p{
             color: $white;
+        }
+        .section-header,.section-desc{
+            h4,p{
+                //visibility: hidden;
+                text-align: center;
+            }
         }
     }
     .section-header{
@@ -54,11 +140,6 @@
 
         .container{
             max-width: 38vw;
-        }
-    }
-    .section-header,.section-desc{
-        h4,p{
-            text-align: center;
         }
     }
     .product-card{
@@ -92,7 +173,7 @@
         }
     }
     .slider{
-        height: 30vw;
+        height: 31vw;
 
         .slider-wrap{
             position: absolute;
@@ -100,6 +181,12 @@
             left: 50%;
             transform: translateX(-50%);
             column-gap: 3rem;
+        }
+
+        .slide:not(.slide-active){
+            .product-details{
+                display: none;
+            }
         }
     }
 </style>

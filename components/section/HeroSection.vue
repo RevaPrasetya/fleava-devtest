@@ -1,7 +1,6 @@
 <script>
     import {gsap} from "gsap";
     import { ScrollTrigger } from "gsap/ScrollTrigger";
-    import Lenis from '@studio-freight/lenis';
     import {ref} from 'vue';
     
     gsap.registerPlugin(ScrollTrigger);
@@ -9,7 +8,7 @@
     export default {
         mounted: function() {
             this.scrollAnimations();
-            this.lenisScroll();
+            this.revealAnimations();
         },
         methods: {
             scrollAnimations(){
@@ -36,26 +35,16 @@
                 });
 
             },
-            lenisScroll(){
-                const lenis = new Lenis({
-                duration: 2,
-                easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-            });
-
-            lenis.on('scroll', ScrollTrigger.update);
-
-            gsap.ticker.add((time) => {
-                lenis.raf(time * 1000);
-            });
-
-            gsap.ticker.lagSmoothing(0);
-
-            // function raf(time) {
-            //     lenis.raf(time);
-            //     requestAnimationFrame(raf);
-            // }
-
-            // requestAnimationFrame(raf);
+            revealAnimations(){
+                let defaultEasing = 'cubic-bezier(0.65, 0, 0.35, 1)';
+                let revealAnim = gsap.timeline({
+                    scrollTrigger:{
+                        trigger: '#hero-section',
+                        toggleActions: 'restart none restart none',
+                    }
+                })
+                revealAnim.fromTo('#hero-section .line', 2 ,{yPercent: 50, autoAlpha: 0}, {yPercent: 0, autoAlpha: 1, stagger: .5, easing: defaultEasing});
+                revealAnim.fromTo('.hero-product-card > *', 2, {xPercent: 100, autoAlpha: 0}, {xPercent: 0, autoAlpha: 1, stagger: .2, easing: defaultEasing}, 1)
             }
         }
 

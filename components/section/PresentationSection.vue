@@ -1,3 +1,68 @@
+<script>
+    import {gsap} from "gsap";
+    import { ScrollTrigger } from "gsap/ScrollTrigger";
+    import {ref} from 'vue';
+
+    gsap.registerPlugin(ScrollTrigger);
+    let defaultEasing = 'cubic-bezier(0.65, 0, 0.35, 1)';
+
+    export default {
+        mounted: function() {
+            this.scrollAnimations();
+            this.revealAnimations();
+        },
+        methods: {
+            scrollAnimations(){
+
+                let clipSection = gsap.timeline({
+                    scrollTrigger:{
+                        trigger: '#presentation-section',
+                        // pin: true,
+                        // pinSpacing: false,
+                        start: 'top 80%',
+                        end: 'bottom top',
+                        scrub: 2,
+                        markers: true,
+                    }
+                })
+                clipSection.to('#presentation-section h4 svg',{rotation: 180 });
+
+            },
+            revealAnimations(){
+                let revealAnim = gsap.timeline({
+                    scrollTrigger:{
+                        trigger: '#presentation-section',
+                        start: 'top 40%',
+                        end: 'bottom top',
+                        toggleActions: 'play none none reverse',
+                        onLeave: () => {
+                            revealAnim.timeScale(3).reverse();
+                        },
+                        onEnterBack: () => {
+                            revealAnim.timeScale(1).restart();
+                        }
+                        //scrub: 1
+                    }
+                })
+
+                //gsap.set('#presentation-section .line', {autoAlpha: 0});
+
+                let poly = 'polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)';
+                revealAnim.set('.pr-img', {autoAlpha: 0, duration: 1 , clipPath: 'polygon(0% 0%, 0% 0%, 0% 100%, 0% 100%)'})
+                .set('.pr-img-highlight', {autoAlpha: 0, duration: 1 , clipPath: 'polygon(0% 0%, 0% 0%, 0% 100%, 0% 100%)'})
+
+                .to('.pr-img-highlight', {y: 0,autoAlpha: 1, clipPath: poly, duration: 1.5, easing: defaultEasing}, 0)
+                .to('.pr-img', {y: 0,autoAlpha: 1, clipPath: poly, duration: 1.5, easing: defaultEasing, stagger: 1}, 1)
+
+                .fromTo('#presentation-section .line', 1.5 ,{y:'5vw' , autoAlpha: 0}, {y: 0, autoAlpha: 1, easing: defaultEasing, stagger: .2}, 1.5)
+                .fromTo('.pr-desc-wrap > *', 1.5 ,{y:'5vw' , autoAlpha: 0}, {y: 0, autoAlpha: 1, easing: defaultEasing, stagger: .6}, 2);
+            }
+        }
+
+    }
+</script>
+
+
 <template>
     <section id="presentation-section">
         <div class="container-2">
@@ -9,6 +74,7 @@
                     <div class="pr-heading-wrap">
                         <h4>
                             <span class="line indent-2"><span class="highlight">Awaken </span>your innate</span>
+
                             <span class="line text-flex">
                                 desire for beauty
                                 <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40" fill="none">
@@ -49,13 +115,10 @@
                         <div class="pr-desc-wrap">
                             <p class="mb-4">Lectus congue sed augue phasellus. Orci,curabiturlem entum ut. In risus, eu est nibh. Faucibus urna porttitor bibendum est morbi nam in sed in. Mattis id tristique blandit vestibulum venenatis commodo sodales nam. Etiam porttitor porttitor mattis duis amet, sed quisque. Purus eget tincidunt urna accumsan.</p>
                             
-                            <a href="" class="btn btn-primary">
-                                <div>Explore Now</div>
-                                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 14 14" fill="none">
-                                    <path d="M1.46753 1H13V12.5325" stroke="black" stroke-width="1.5"/>
-                                    <path d="M13 1L1 13" stroke="black" stroke-width="1.5"/>
-                                </svg>
-                            </a>
+                            
+                            <Button primary>
+                                Explore Now
+                            </Button>
                         </div>
                     </div>
                 </div>
@@ -90,6 +153,9 @@
             overflow: hidden;
             //margin-bottom: 2rem;
         }
+    }
+    .pr-img-highlight, .pr-img{
+        clip-path: polygon(0 0, 0 0, 0 100%, 0 100%);
     }
     .pr-content{
         width: 30vw;

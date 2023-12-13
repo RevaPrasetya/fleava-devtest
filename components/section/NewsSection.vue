@@ -1,3 +1,55 @@
+<script>
+    import {gsap} from "gsap";
+    import { ScrollTrigger } from "gsap/ScrollTrigger";
+    import {ref} from 'vue';
+
+    gsap.registerPlugin(ScrollTrigger);
+    let defaultEasing = 'cubic-bezier(0.65, 0, 0.35, 1)';
+
+    export default {
+        mounted: function() {
+            this.scrollAnimations();
+            this.revealAnimations();
+        },
+        methods: {
+            scrollAnimations(){
+
+                let newsSection = gsap.timeline({
+                    scrollTrigger:{
+                        trigger: '#news-section',
+                        // pin: true,
+                        // pinSpacing: false,
+                        start: 'top 50%',
+                        end: '+=800',
+                        scrub: 2,
+                        //markers: true,
+                    }
+                })
+                newsSection.to('.news-card img',{
+                    y: '-3vw'
+                } )
+                //newsSection.fromTo('#news-section h4',{scale: 1.1 }, {scale: 1 });
+
+                
+
+            },
+            revealAnimations(){
+                let revealAnim = gsap.timeline({
+                    scrollTrigger:{
+                        trigger: '#news-section',
+                        start: 'top bottom',
+                        toggleActions: 'restart none restart none',
+                    }
+                })
+                revealAnim.set('#news-section h2',{autoAlpha: 0});
+                revealAnim.fromTo('#news-section h2', 1.3 ,{yPercent: 50, autoAlpha: 0}, {yPercent: 0, autoAlpha: 1, easing: defaultEasing}, .5)
+                .fromTo('#news-section .section-header .btn', 1.3 ,{yPercent: 50, autoAlpha: 0}, {yPercent: 0, autoAlpha: 1, easing: defaultEasing}, .8)
+                .fromTo('#news-section .slide', 1.3 ,{x: '20vw' ,yPercent: 10, autoAlpha: 0}, {x: '0' ,yPercent: 0, autoAlpha: 1, easing: defaultEasing, stagger: 0.3}, .8);
+            }
+        }
+
+    }
+</script>
 <template>
     <section id="news-section">
         <div class="section-header mb-3 d-flex items-center justify-between container">
@@ -93,6 +145,10 @@
             max-width: 100%;
             height: 32vw;
             margin-bottom: $rem_2;
+            overflow: hidden;
+            img{
+                height: calc(100% + 5vw)
+            }
         }
         .news-details {
             text-transform: uppercase;

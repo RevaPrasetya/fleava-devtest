@@ -1,3 +1,59 @@
+<script>
+    import {gsap} from "gsap";
+    import { ScrollTrigger } from "gsap/ScrollTrigger";
+    import {ref} from 'vue';
+
+    gsap.registerPlugin(ScrollTrigger);
+    let defaultEasing = 'cubic-bezier(0.65, 0, 0.35, 1)';
+
+    export default {
+        mounted: function() {
+            this.scrollAnimations();
+            this.revealAnimations();
+        },
+        methods: {
+            scrollAnimations(){
+
+                let clipSection = gsap.timeline({
+                    scrollTrigger:{
+                        trigger: 'footer',
+                        start: 'top bottom',
+                        end: 'top top',
+                        scrub: 2,
+                        //markers: true,
+                    }
+                })
+                //clipSection.set('footer', {clipPath: 'polygon(0% 100%, 100% 100%, 100% 100%, 0% 100%)'})
+                clipSection.to('footer',{clipPath: 'polygon(0% 100%, 100% 100%, 100% 0%, 0% 0%)' });
+
+            },
+            revealAnimations(){
+                let revealAnim = gsap.timeline({
+                    scrollTrigger:{
+                        trigger: 'footer',
+                        start: 'top 40%',
+                        toggleActions: 'play none none reverse',
+                        onLeave: () => {
+                            revealAnim.timeScale(3).reverse();
+                        },
+                        onEnterBack: () => {
+                            revealAnim.timeScale(1).restart();
+                        }
+                    }
+                })
+
+                
+                revealAnim.fromTo('footer .line', 1 ,{y:'2vw' , autoAlpha: 0}, {y: 0, autoAlpha: 1, easing: defaultEasing, stagger: .4})
+                //.fromTo('.company-contact h3 .line', 1.5 ,{y:'5vw' , autoAlpha: 0}, {y: 0, autoAlpha: 1, easing: defaultEasing, stagger: .4}, 1)
+                .fromTo('.company-contact .ml-form', 1.5 ,{y:'5vw' , autoAlpha: 0}, {y: 0, autoAlpha: 1, easing: defaultEasing, stagger: .2}, 1)
+                .fromTo('.company-info > *', 1.5 ,{y:'5vw' , autoAlpha: 0}, {y: 0, autoAlpha: 1, easing: defaultEasing, stagger: .2}, 1)
+                .fromTo('.company-socmed > *', 1.5 ,{x:'5vw' , autoAlpha: 0}, {x: 0, autoAlpha: 1, easing: defaultEasing, stagger: .2}, 1);
+            }
+        }
+
+    }
+</script>
+
 <template>
     <footer>
         <div class="container-3 d-flex justify-between">
@@ -16,7 +72,7 @@
             </div>
             <div class="company-contact">
                 <div class="company-ml">
-                    <h3 class="mb-4">Join Our Mailing List</h3>
+                    <h3 class="mb-4"><span class="line">Join Our</span> <span class="line">Mailing List</span></h3>
                     <form action="" class="ml-form">
                         <input type="email" class="mb-2" name="" id="" placeholder="Email address here">
                         <button type="submit" href="" class="btn btn-primary white">
@@ -61,6 +117,8 @@
         padding: 7vw 0;
         background: $dark_green;
         color: $white;
+
+        clip-path: polygon(0% 100%, 100% 100%, 100% 100%, 0% 100%);
         .container-3{
             align-items: flex-end;
         }

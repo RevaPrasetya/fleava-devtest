@@ -40,3 +40,24 @@ div,p, svg, button{
     font-family: inherit;
     font-weight: 400;
 }
+
+.lenis {
+    &.lenis-smooth {
+      scroll-behavior: auto;
+  
+      [data-lenis-prevent] {
+        overscroll-behavior: contain;
+      }
+    }
+  
+    &.lenis-scrolling {
+      iframe {
+        pointer-events: none;
+      }
+    }
+  
+    &.lenis-stopped {
+      overflow: hidden;
+    }
+  }
+  // END; Lenis Scroll.

@@ -1,8 +1,83 @@
+<script>
+    import {gsap} from "gsap";
+    import { ScrollTrigger } from "gsap/ScrollTrigger";
+    import {ref} from 'vue';
+
+    gsap.registerPlugin(ScrollTrigger);
+    let defaultEasing = 'cubic-bezier(0.65, 0, 0.35, 1)';
+
+
+    export default {
+        mounted: function() {
+            this.animProductSect();
+        },
+        methods: {
+            animProductSect(){
+
+                let revealAnim = gsap.timeline({
+                    scrollTrigger:{
+                        trigger: '#product-section',
+                        start: 'top 80%',
+                        end: 'bottom top',
+                        toggleActions: 'play none none restart',
+                        //scrub: 1
+                    }
+                })
+
+                
+
+                let prodCol = document.querySelectorAll('.product-col');
+                prodCol.forEach(pc => {
+                    let productSection = gsap.timeline({
+                        scrollTrigger: {
+                            start: 'top bottom',
+                            end:'bottom top',
+                            trigger: "#product-section",
+                            scrub: 2,
+                            easing: defaultEasing 
+                        }
+                    })
+                    productSection.to(pc.querySelectorAll('.product-img img'),{y: '-4vw' });
+
+                    let prodHover = gsap.timeline({
+                        paused: true,
+                    });
+
+                    let pimgWidth = document.querySelector('.product-img').offsetWidth;
+
+                    prodHover.fromTo(pc.querySelectorAll('.line'), 1.5 ,{y:'3vw' , autoAlpha: 0}, {y: 0, autoAlpha: 1, easing: defaultEasing, stagger: .3})
+                    .fromTo(pc.querySelectorAll('p'), 1.5 ,{y:'3vw' , autoAlpha: 0}, {y: 0, autoAlpha: 1, easing: defaultEasing, stagger: .3}, 1.5)
+                    //.to(pc.querySelectorAll('.product-img'), 1.5 ,{yPercent: -50 , top: '50%',duration: 1, easing: 'cubic-bezier(0.33, 1, 0.68, 1)'}, 0)
+                    .to(pc.querySelectorAll('.product-img'),1 ,{ y: '4vw' , height: '23.5vw', easing: 'cubic-bezier(0.33, 1, 0.68, 1)'}, 0)
+                    .to(pc.querySelectorAll('.product-img'),2,{minWidth: '17vw', easing: 'cubic-bezier(0.33, 1, 0.68, 1)'}, 0)
+                    .to(pc.querySelectorAll('.product-img img'), 1 ,{minHeight: '23.5vw', minWidth: '17vw', width: '17vw', easing: 'cubic-bezier(0.33, 1, 0.68, 1)'}, 0)
+                    .fromTo(pc.querySelectorAll('.btn-icon'), 1.5 ,{y:'3vw' , autoAlpha: 0}, {y: 0, autoAlpha: 1, easing: defaultEasing, stagger: .3}, 1)
+
+                    gsap.to(pc.querySelectorAll('.line svg'), {rotation: 360, duration: 30, repeat: -1})
+
+                    pc.addEventListener('mouseover', function(){
+                        //pc.classList.add('active');
+                        prodHover.timeScale(1).play();
+                    })
+                    
+                    pc.addEventListener('mouseleave', function(){
+                        pc.classList.remove('active');
+                        prodHover.timeScale(1).reverse();
+                        //prodHover.restart();
+                        //prodHover.pause();
+                    })
+                })
+            }
+        }
+
+    }
+</script>
+
 <template>
     <section id="product-section">
         <div class="columns">
             <div class="col-1-2">
-                <div class="product-col active">
+                <div class="product-col">
                     <h4>
                         <div class="line">Fulfill Your</div>
                         <div class="line text-flex indent-3">
@@ -112,6 +187,7 @@
             flex-direction: column;
             align-items: center;
             justify-content: center;
+            row-gap: 48.5%;
             position: relative;
             width: 100%;
             height: 100%;
@@ -120,16 +196,16 @@
                 top: 50%;
                 left: 50%;
                 transform: translate(-50%, -50%);
-                height: 110%;
+                height: calc(100vh + 8vw );
                 min-width: 100%;
+                img{
+                    object-fit: cover;
+                }
                 .btn-icon{
                     position: absolute;
                     right: -2.4vw;
-                    bottom: 3vw;
+                    bottom: 5vw;
                     padding: 0;
-
-                    opacity: 0;
-                    pointer-events: none;
 
 
                     height: 4.8vw;
@@ -148,28 +224,40 @@
                 position: relative;
                 z-index: 2;
                 color: $white;
-                opacity: 0;
+                opacity: 1;
                 pointer-events: none;
+            }
+            h4{
+                
+                //align-self: flex-start;
+                transform: translateX(-5.7rem);
+            }
+            p{
+                
+                    max-width: 33vw;
             }
 
             &.active{
-                row-gap: 48.5%;
-                h4,p,.btn-icon{
-                    pointer-events: all;
-                    opacity: 1;
-                }
-                h4{
-                    //align-self: flex-start;
-                    transform: translateX(-5.7rem);
-                }
-                p{
-                    max-width: 33vw;
-                }
-                .product-img{
-                    height: 23.5vw;
-                    min-width: initial;
-                    width: 17vw;
-                }
+                // h4,p,.btn-icon{
+                //     pointer-events: all;
+                //     opacity: 1;
+                // }
+                // h4{
+                //     //align-self: flex-start;
+                //     transform: translateX(-5.7rem);
+                // }
+                // p{
+                //     max-width: 33vw;
+                // }
+                // .product-img{
+                //     top: 50%;
+                //     transform:  translate(-50%, -50%);
+                //     height: 23.5vw;
+                //     //min-width: initial;
+                //     width: 17vw;
+
+                //     transition:ease 2s all;
+                // }
             }
         }
     }
