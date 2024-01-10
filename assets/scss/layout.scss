@@ -11,6 +11,9 @@ body{
     //max-width: $container_width;
     padding: 0 $col_gap_v;
 }
+.container-1{
+    padding: 0 calc($col_gap_v * 2);
+}
 .container-2{
     padding: 0 calc($col_gap_v * 5.5);
 }

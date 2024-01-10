@@ -47,13 +47,13 @@
 
                     prodHover.fromTo(pc.querySelectorAll('.line'), 1.5 ,{y:'3vw' , autoAlpha: 0}, {y: 0, autoAlpha: 1, easing: defaultEasing, stagger: .3})
                     .fromTo(pc.querySelectorAll('p'), 1.5 ,{y:'3vw' , autoAlpha: 0}, {y: 0, autoAlpha: 1, easing: defaultEasing, stagger: .3}, 1.5)
-                    //.to(pc.querySelectorAll('.product-img'), 1.5 ,{yPercent: -50 , top: '50%',duration: 1, easing: 'cubic-bezier(0.33, 1, 0.68, 1)'}, 0)
-                    .to(pc.querySelectorAll('.product-img'),1 ,{ y: '4vw' , height: '23.5vw', easing: 'cubic-bezier(0.33, 1, 0.68, 1)'}, 0)
+                    //.to(pc.querySelectorAll('.product-img'), 1 ,{yPercent: -50 , top: '50%', easing: 'cubic-bezier(0.33, 1, 0.68, 1)'}, 0)
+                    .to(pc.querySelectorAll('.product-img'),1 ,{ top: '50%', left: '50%', y: '4vw' , height: '23.5vw', easing: 'cubic-bezier(0.33, 1, 0.68, 1)'}, 0)
                     .to(pc.querySelectorAll('.product-img'),2,{minWidth: '17vw', easing: 'cubic-bezier(0.33, 1, 0.68, 1)'}, 0)
                     .to(pc.querySelectorAll('.product-img img'), 1 ,{minHeight: '23.5vw', minWidth: '17vw', width: '17vw', easing: 'cubic-bezier(0.33, 1, 0.68, 1)'}, 0)
                     .fromTo(pc.querySelectorAll('.btn-icon'), 1.5 ,{y:'3vw' , autoAlpha: 0}, {y: 0, autoAlpha: 1, easing: defaultEasing, stagger: .3}, 1)
 
-                    gsap.to(pc.querySelectorAll('.line svg'), {rotation: 360, duration: 30, repeat: -1})
+                    gsap.to(pc.querySelectorAll('.line svg'), 30, {rotation: 360, repeat: -1})
 
                     pc.addEventListener('mouseover', function(){
                         //pc.classList.add('active');

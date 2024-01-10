@@ -9,4 +9,5 @@ export default defineNuxtConfig({
     global: true,
     dirs: ['~/components']
   },
+  modules: ["nuxt-rating"],
 })

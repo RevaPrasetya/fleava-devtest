@@ -27,15 +27,14 @@ $hc: 1;
 
 $c: 1;
 @each $is_v, $is_p in $indent_size{
-    h1,h2,h3,h4,h5,h6{
-        .indent-#{$c}{
-            padding-left: $is_v;
 
-            @media screen and (max-width: $desktop_width){
-                padding-left: $is_p;
-            }
-        }   
-    }
+    .indent-#{$c}{
+        padding-left: $is_v;
+
+        @media screen and (max-width: $desktop_width){
+            padding-left: $is_p;
+        }
+    }  
     $c: $c + 1;
 }
 
@@ -69,6 +68,13 @@ $mc: 0;
             margin-bottom: $m_p;
         }
     }
+
+    .pb-#{$mc}{
+        padding-bottom: $m_v;
+        @media screen and (max-width: $desktop_width) {
+            padding-bottom: $m_p;
+        }
+    }
     
 
     $mc: $mc + 1;
@@ -80,6 +86,9 @@ h1,h2,h3,h4,h5,h6{
     span.highlight{
         color: $dark_chocolate !important;
     }
+}
+.playfair{
+    font-family: $heading_font_2;
 }
 body{
     font-family: $text_font;

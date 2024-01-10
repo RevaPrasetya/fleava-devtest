@@ -4,6 +4,7 @@ export default {
   props: {
     primary: Boolean,
     white: Boolean,
+    black: Boolean,
     href: String,
   }
 };
@@ -13,7 +14,8 @@ export default {
     <a
       :class="[
         primary ? 'btn-primary' : 'btn-secondary',
-        white ? 'white' : ''
+        white ? 'white' : '',
+        black ? 'black' : ''
       ]"
       :href="href"
       class="btn"

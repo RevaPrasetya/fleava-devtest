@@ -16,8 +16,12 @@
     "vue-router": "^4.2.5"
   },
   "dependencies": {
+    "@splidejs/vue-splide": "^0.6.12",
     "@studio-freight/lenis": "^1.0.29",
     "gsap": "^3.12.3",
-    "sass": "^1.69.5"
+    "nuxt-rating": "^0.0.15",
+    "sass": "^1.69.5",
+    "swiper": "^11.0.5",
+    "vue-star-rating": "^2.1.0"
   }
 }

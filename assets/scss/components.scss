@@ -28,6 +28,13 @@
                 stroke: $black;
             }
         }
+        &.black {
+            background: $black !important;
+            color: $white;
+            path{
+                stroke: $white;
+            }
+        }
     }
     &.btn-secondary{
         color: $black !important;

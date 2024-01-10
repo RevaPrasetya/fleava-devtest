@@ -83,7 +83,7 @@
 
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
     @import '~/assets/scss/_variables.scss';
     #about-section{
         margin-top: 13vw;
