@@ -33,15 +33,15 @@
         gsap.utils.toArray("#story-section-grid .story-card img").forEach(function(el){
 
             gsap.to(el, {
-            y: "20%",
-            scrollTrigger: {
-                start: 'top 80%',
-                end:'bottom top',
-                trigger: el,
-                scrub: 1,
-                ease: 'cubic-bezier(0.65, 0, 0.35, 1)',
-            }
-        });
+                y: "20%",
+                scrollTrigger: {
+                    start: 'top 80%',
+                    end:'bottom top',
+                    trigger: el,
+                    scrub: 1,
+                    ease: 'cubic-bezier(0.65, 0, 0.35, 1)',
+                }
+            });
         
         })
 

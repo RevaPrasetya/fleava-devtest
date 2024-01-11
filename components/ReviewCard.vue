@@ -37,23 +37,23 @@ import {gsap} from "gsap";
             autoAlpha: 1,
             stagger: 0.3
         },0.5 )
-        .fromTo('.review-name > *', 1.5,{
-            x: '-3vw',
-            autoAlpha: 0,
+        // .fromTo('.review-name > *', 1.5,{
+        //     x: '-3vw',
+        //     autoAlpha: 0,
 
-        },{
-            x: '0vw',
-            autoAlpha: 1,
-            stagger: 0.3
-        },0.5 )
-        .fromTo('.review-detail > *', 1.5, {
-            y: '3vw',
-            autoAlpha: 0,
-        },{
-            y: '0vw',
-            autoAlpha: 1,
-            stagger: 0.3
-        },0.5)
+        // },{
+        //     x: '0vw',
+        //     autoAlpha: 1,
+        //     stagger: 0.3
+        // },0.5 )
+        // .fromTo('.review-detail > *', 1.5, {
+        //     y: '3vw',
+        //     autoAlpha: 0,
+        // },{
+        //     y: '0vw',
+        //     autoAlpha: 1,
+        //     stagger: 0.3
+        // },0.5)
     }
 </script>
 

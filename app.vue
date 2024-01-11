@@ -25,12 +25,11 @@
 
                 gsap.ticker.lagSmoothing(0);
 
-            // function raf(time) {
-            //     lenis.raf(time);
-            //     requestAnimationFrame(raf);
-            // }
+                const nuxtApp = useNuxtApp()
 
-            // requestAnimationFrame(raf);
+                nuxtApp.hook("page:finish", () => {
+                    lenis.scrollTo(0)
+                })
             }
         }
 

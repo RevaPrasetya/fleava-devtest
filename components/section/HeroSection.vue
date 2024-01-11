@@ -24,12 +24,12 @@
                 // htl.from('.parallax-bg', {y: 0}).to('.parallax-bg', {y: '-10vh'});
 
                 gsap.to(".parallax-bg", {
-                    y: "-10vh",
+                    y: "15vh",
                     scrollTrigger: {
                         start: 'top top',
                         end:'bottom top',
                         trigger: "#hero-section",
-                        scrub: 2,
+                        scrub: 1,
                         ease: 'cubic-bezier(0.65, 0, 0.35, 1)',
                     }
                 });
