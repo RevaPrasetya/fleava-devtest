@@ -80,6 +80,11 @@
 
         document.querySelector(".open-menu-btn").addEventListener('click', showMenu);
         document.querySelector(".close-menu-btn").addEventListener('click', closeMenu);
+        let navL = document.querySelectorAll(".header-menu .nav-link");
+        navL.forEach(n => {
+            n.addEventListener('click', closeMenu);
+        })
+
     }
 
     const navLinkHover = () => {
@@ -117,7 +122,7 @@
 <template>
     <header>
         <div class="container-fluid">
-            <NuxtLink to="/" class="">
+            <NuxtLink to="/" >
                 <h5>Earth</h5>
             </NuxtLink>
             <button class="menu-btn open-menu-btn" >
@@ -141,17 +146,17 @@
         <div class="menu-nav">
             <ul>
                 <li class="nav-link" data-nav="1">
-                    <NuxtLink>
+                    <NuxtLink to="/products/1">
                         <h3>Our Story</h3>
                     </NuxtLink>
                 </li>
                 <li class="nav-link" data-nav="2">
-                    <NuxtLink>
+                    <NuxtLink to="/products/1">
                         <h3>Products</h3>
                     </NuxtLink>
                 </li>
                 <li class="nav-link" data-nav="3">
-                    <NuxtLink>
+                    <NuxtLink to="/products/1">
                         <h3>Anjay</h3>
                     </NuxtLink>
                 </li>
