@@ -10,4 +10,10 @@ export default defineNuxtConfig({
     dirs: ['~/components']
   },
   modules: ["nuxt-rating"],
+  app: {
+    pageTransition: {
+      name: 'page',
+      mode: 'out-in' // default
+    },
+  }
 })

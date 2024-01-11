@@ -119,12 +119,12 @@
                     </h4>
                     <figure class="product-img">
                         <img src="~/assets/img/product-section/product-s-1.jpg" alt="" >
-                        <div class="btn btn-icon">
+                        <NuxtLink to="/products/1" class="btn btn-icon">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
                             <path d="M1.46753 1H13V12.5325" stroke="black" stroke-width="1.5"/>
                             <path d="M13 1L1 13" stroke="black" stroke-width="1.5"/>
                             </svg>
-                        </div>
+                        </NuxtLink>
                     </figure>
                     <p>Elementum ut rutrum tellus vulputate augue odio mattis. Arcu tellus ultrices at malesuada eget tempor. Suscipit ultricies dictum semper vel, integer id urna.</p>
                 </div>
@@ -159,12 +159,12 @@
                     </h4>
                     <figure class="product-img">
                         <img src="~/assets/img/product-section/product-s-2.jpg" alt="" >
-                        <div class="btn btn-icon">
+                        <NuxtLink to="/products/1" class="btn btn-icon">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
                             <path d="M1.46753 1H13V12.5325" stroke="black" stroke-width="1.5"/>
                             <path d="M13 1L1 13" stroke="black" stroke-width="1.5"/>
                             </svg>
-                        </div>
+                        </NuxtLink>
                     </figure>
                     <p>Elementum ut rutrum tellus vulputate augue odio mattis. Arcu tellus ultrices at malesuada eget tempor. Suscipit ultricies dictum semper vel, integer id urna.</p>
                 </div>

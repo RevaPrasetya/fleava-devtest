@@ -28,12 +28,12 @@
             scrollTrigger:{
                 trigger: '#products-section',
                 start: 'top bottom',
-                toggleActions: 'restart none restart none',
+                //toggleActions: 'restart none restart none',
             }
         })
         revealAnim.set('#products-section h4',{autoAlpha: 0});
         revealAnim.fromTo('#products-section h4', 1.3 ,{yPercent: 50, autoAlpha: 0}, {yPercent: 0, autoAlpha: 1, easing: defaultEasing}, .5)
-        .fromTo('#products-section .section-desc p', 1.3 ,{yPercent: 50, autoAlpha: 0}, {yPercent: 0, autoAlpha: 1, easing: defaultEasing}, 2);
+        .fromTo('#products-section .section-desc p', 1.3 ,{yPercent: 50, autoAlpha: 0}, {yPercent: 0, autoAlpha: 1, easing: defaultEasing}, 1);
     }
     
     function scrollAnimations(){
