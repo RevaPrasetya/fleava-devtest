@@ -50,9 +50,9 @@
 <template>
     <header>
         <div class="container-fluid">
-            <a href="/" class="">
+            <NuxtLink to="/" class="">
                 <h5>Earth</h5>
-            </a>
+            </NuxtLink>
             <button class="menu-btn">
                 <p>MENU</p>
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="14" viewBox="0 0 24 14" fill="none">

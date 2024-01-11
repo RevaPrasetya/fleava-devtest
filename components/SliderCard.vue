@@ -1,5 +1,5 @@
 <script setup>
-    const props = defineProps({
+    const slideCard = defineProps({
         img: {
             type: String,
             required: false,
@@ -17,7 +17,7 @@
             required: false,
         }
     });
-    const { img, label, title, link } = props;
+    const { img, label, title, link } = slideCard;
 </script>
 
 <template>
@@ -29,7 +29,7 @@
             <p class="product-label">{{ label }}</p>
             <h2 class="product-title">{{ title }}</h2>
             
-            <Button :href={link}  primary white >
+            <Button :link="slideCard.link"  primary white >
                 Explore Now
             </Button>
             

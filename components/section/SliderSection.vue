@@ -111,7 +111,7 @@
             >
                 <SplideTrack>
                     <SplideSlide class="slide" v-for="product in products">
-                        <SliderCard :key="product.id" :img="product.img" :label="product.label" :title="product.title"></SliderCard>
+                        <SliderCard :key="product.id" :img="product.img" :label="product.label" :link="`/products/${product.id}`" :title="product.title"></SliderCard>
                     </SplideSlide>
                 </SplideTrack>
             </Splide>
