@@ -1,17 +1,19 @@
 <script setup>
     import {gsap} from "gsap";
     import { ScrollTrigger } from "gsap/ScrollTrigger";
+    import {ref} from "vue";
 
     gsap.registerPlugin(ScrollTrigger);
 
     onMounted(() => {
         scrollAnimations();
+        numCounterAnimation();
     })
 
     
     function scrollAnimations(){
         gsap.to(".parallax-bg", {
-            y: "-20vh",
+            y: "30vh",
             scrollTrigger: {
                 start: 'top bottom',
                 end:'bottom top',
@@ -21,6 +23,32 @@
             }
         });
     }
+
+    function numCounterAnimation(){
+        gsap.from(".count-rating", {
+            innerText: 4,
+            duration: 2.5,
+            snap: {
+                innerText: 0.1
+            },
+            scrollTrigger: {
+                start: 'top bottom',
+                trigger: "#review-section",
+            }
+        })
+        gsap.from(".count-amount", {
+            innerText: 1400,
+            duration: 2,
+            snap: {
+                innerText: 1
+            },
+            scrollTrigger: {
+                start: 'top bottom',
+                trigger: "#review-section",
+            }
+        })
+    }
+
 
     const reviews = [
         {
@@ -51,12 +79,12 @@
         <div class="container-3">
             <div class="review-summary">
                 <div class="r-info total-review">
-                    <h3 class="playfair mb-1">1485</h3>
+                    <h3 class="playfair mb-1 count-amount">1485</h3>
                     <p>Total Reviews</p>
                 </div>
                 <div class="r-info avg-rating">
                     <div class="rating mb-1">
-                        <h3 class="playfair">4.9</h3>
+                        <h3 class="playfair count-rating">4.9</h3>
                         <NuxtRating class="mt-1" :read-only="true" :ratingValue="4.5" :activeColor="'#000000'" :ratingSize="'2vw'"/>
                     </div>
                     <p>Average Rating</p>
@@ -91,7 +119,7 @@
         .parallax-bg{
             position: absolute;
             min-height: 120vh;
-            top: 0;
+            bottom: 0;
             min-width: 100%;
             z-index: 1;
         }

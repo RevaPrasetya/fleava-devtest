@@ -13,9 +13,9 @@
     function scrollAnimations(){
         
 
-        let newsSection = gsap.timeline({
+        let storySection = gsap.timeline({
             scrollTrigger:{
-                trigger: '#story-section',
+                trigger: '#story-section-grid',
                 // pin: true,
                 // pinSpacing: false,
                 start: 'top 50%',
@@ -24,10 +24,15 @@
                 //markers: true,
             }
         })
-        newsSection.to(' #story-section .story-card img',{
-            y: '-10%'
+
+        // storySection.to(' #story-section .story-card img',{
+        //     y: '10%'
+        // } )
+
+        storySection.to('#story-section-grid h3 svg', {
+            rotation: 180
         } )
-        //newsSection.fromTo('#news-section h4',{scale: 1.1 }, {scale: 1 });
+        //storySection.fromTo('#news-section h4',{scale: 1.1 }, {scale: 1 });
 
         
         // let storyGrid = gsap.timeline({
@@ -48,7 +53,7 @@
         gsap.utils.toArray("#story-section-grid .story-card img").forEach(function(el){
 
             gsap.to(el, {
-            y: "-20%",
+            y: "20%",
             scrollTrigger: {
                 start: 'top 80%',
                 end:'bottom top',
@@ -57,6 +62,23 @@
                 ease: 'cubic-bezier(0.65, 0, 0.35, 1)',
             }
         });
+        
+        })
+
+        
+        gsap.utils.toArray("#story-section-grid .story-card p").forEach(function(el){
+
+            gsap.from(el, {
+                y: "4vw",
+                autoAlpha: 0,
+                duration: 1.5,
+                scrollTrigger: {
+                    start: 'top 80%',
+                    trigger: el,
+                    ease: 'Power3.inOut'
+                }
+            });
+
         })
                 
 
@@ -231,7 +253,9 @@
         height: 100%;
 
         img{
+            position: absolute;
             height: calc(125%);
+            bottom: 0;
         }
     }
     

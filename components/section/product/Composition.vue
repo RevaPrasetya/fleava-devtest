@@ -37,30 +37,42 @@
                             easing: defaultEasing 
                         }
                     })
-                    productSection.to(pc.querySelectorAll('.product-img img'),{y: '-4vw' });
+                    //productSection.to(pc.querySelectorAll('.product-img img'),{y: '8vw' });
 
                     let prodHover = gsap.timeline({
                         paused: true,
                     });
 
+                    let prodImgHover = gsap.timeline({
+                        paused: true,
+                    });
+                    
+
                     let pimgWidth = document.querySelector('.product-img').offsetWidth;
 
                     prodHover.fromTo(pc.querySelectorAll('h4'), 1.5 ,{y:'3vw' , autoAlpha: 0}, {y: 0, autoAlpha: 1, easing: defaultEasing, stagger: .3})
-                    .fromTo(pc.querySelectorAll('p'), 1.5 ,{y:'3vw' , autoAlpha: 0}, {y: 0, autoAlpha: 1, easing: defaultEasing, stagger: .3}, 1.5)
-                    .to(pc.querySelectorAll('.product-img'),2,{minWidth: '17vw', easing: 'cubic-bezier(0.33, 1, 0.68, 1)'}, 0)
-                    .to(pc.querySelectorAll('.product-img'), 1.5 ,{yPercent: -50 , top: '50%',duration: 1, easing: 'cubic-bezier(0.33, 1, 0.68, 1)'}, 0)
-                    .to(pc.querySelectorAll('.product-img'),1 ,{ y: '3vw' , height: '23.5vw', easing: 'cubic-bezier(0.33, 1, 0.68, 1)'}, 0)
-                    .to(pc.querySelectorAll('.product-img img'), 1 ,{minHeight: '23.5vw', minWidth: '17vw', width: '17vw', easing: 'cubic-bezier(0.33, 1, 0.68, 1)'}, 0)
+                    .fromTo(pc.querySelectorAll('p'), 1.5 ,{y:'3vw' , autoAlpha: 0}, {y: 0, autoAlpha: 1, easing: defaultEasing, stagger: .3}, .5)
+                    // .to(pc.querySelectorAll('.product-img'),2,{minWidth: '17vw', easing: 'cubic-bezier(0.33, 1, 0.68, 1)'}, 0)
+                    // .to(pc.querySelectorAll('.product-img'), 1.5 ,{yPercent: -50 , top: '50%',duration: 1, easing: 'cubic-bezier(0.33, 1, 0.68, 1)'}, 0)
+                    // .to(pc.querySelectorAll('.product-img'),1 ,{ y: '3vw' , height: '23.5vw', easing: 'cubic-bezier(0.33, 1, 0.68, 1)'}, 0)
+                    // .to(pc.querySelectorAll('.product-img img'), 1 ,{minHeight: '23.5vw', minWidth: '17vw', width: '17vw', easing: 'cubic-bezier(0.33, 1, 0.68, 1)'}, 0)
                     .fromTo(pc.querySelectorAll('.btn-icon'), 1.5 ,{y:'3vw' , autoAlpha: 0}, {y: 0, autoAlpha: 1, easing: defaultEasing, stagger: .3}, 1)
 
+                    prodImgHover
+                    .to(pc.querySelectorAll('.product-img'),2 ,{ minWidth: "17vw", width: "17vw", height: "25.5vw",  easing: "power3.out"}, 0)
+
                     pc.addEventListener('mouseover', function(){
-                        //pc.classList.add('active');
+                        pc.classList.add('active');
                         prodHover.timeScale(1).play();
+                        productSection.pause();
+                        prodImgHover.timeScale(2).play();
+                        
                     })
                     
                     pc.addEventListener('mouseleave', function(){
                         pc.classList.remove('active');
-                        prodHover.timeScale(1).reverse();
+                        prodHover.timeScale(3).reverse();
+                        prodImgHover.timeScale(3).reverse();
                         //prodHover.restart();
                         //prodHover.pause();
                     })
@@ -98,13 +110,13 @@
                     </h4>
                     <figure class="product-img">
                         <img src="~/assets/img/product-section/product-s-2.jpg" alt="" >
-                        <div class="btn btn-icon">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
-                            <path d="M1.46753 1H13V12.5325" stroke="black" stroke-width="1.5"/>
-                            <path d="M13 1L1 13" stroke="black" stroke-width="1.5"/>
-                            </svg>
-                        </div>
                     </figure>
+                    <div class="btn btn-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
+                        <path d="M1.46753 1H13V12.5325" stroke="black" stroke-width="1.5"/>
+                        <path d="M13 1L1 13" stroke="black" stroke-width="1.5"/>
+                        </svg>
+                    </div>
                     <p>Elementum ut rutrum tellus vulputate augue odio mattis. Arcu tellus ultrices at malesuada eget tempor. Suscipit ultricies dictum semper vel, integer id urna.</p>
                 </div>
             </div>
@@ -148,15 +160,22 @@
                 top: 50%;
                 left: 50%;
                 transform: translate(-50%, -50%);
-                height: calc(100vh + 8vw );
+                height: calc(100% + 12vw );
                 min-width: 100%;
+                width: 100%;
                 img{
                     object-fit: cover;
                 }
+            
                 .btn-icon{
-                    position: absolute;
                     right: -10vw;
-                    bottom: 50%;
+                }
+            }
+            
+            .btn-icon{
+                    position: absolute;
+                    right: 5vw;
+                    bottom: 45%;
                     padding: 0;
 
 
@@ -172,7 +191,6 @@
                         stroke: $black;
                     }
                 }
-            }
             h4,p{
                 position: relative;
                 z-index: 2;

@@ -25,12 +25,12 @@
     
     function scrollAnimations(){
         gsap.to(".parallax-bg", {
-            y: "-23vh",
+            y: "23vh",
             scrollTrigger: {
                 start: 'top top',
                 end:'bottom top',
                 trigger: "#hero-section",
-                scrub: 1,
+                scrub: 0,
                 ease: 'cubic-bezier(0.65, 0, 0.35, 1)',
             }
         });
@@ -93,7 +93,7 @@
             position: absolute;
             min-height: 100vh;
             min-width: 100%;
-            top: -30vh;
+            bottom: -20vh;
             z-index: 1;
         }
         .container-1{
