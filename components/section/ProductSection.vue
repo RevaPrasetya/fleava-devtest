@@ -37,32 +37,45 @@
                             easing: defaultEasing 
                         }
                     })
-                    productSection.to(pc.querySelectorAll('.product-img img'),{y: '-4vw' });
+                    //productSection.to(pc.querySelectorAll('.product-img img'),{y: '-4vw' });
 
                     let prodHover = gsap.timeline({
+                        paused: true,
+                    });
+                    
+                    let prodImgHover = gsap.timeline({
                         paused: true,
                     });
 
                     let pimgWidth = document.querySelector('.product-img').offsetWidth;
 
-                    prodHover.fromTo(pc.querySelectorAll('.line'), 1.5 ,{y:'3vw' , autoAlpha: 0}, {y: 0, autoAlpha: 1, easing: defaultEasing, stagger: .3})
-                    .fromTo(pc.querySelectorAll('p'), 1.5 ,{y:'3vw' , autoAlpha: 0}, {y: 0, autoAlpha: 1, easing: defaultEasing, stagger: .3}, 1.5)
+                    prodHover.fromTo(pc.querySelectorAll('.line'), 1.5 ,{y:'3vw' , autoAlpha: 0}, {y: 0, autoAlpha: 1, easing: "power3.inOut", stagger: .3})
+                    .fromTo(pc.querySelectorAll('p'), 1.5 ,{y:'3vw' , autoAlpha: 0}, {y: 0, autoAlpha: 1, easing: "power3.inOut", stagger: .3}, 1.5)
                     //.to(pc.querySelectorAll('.product-img'), 1 ,{yPercent: -50 , top: '50%', easing: 'cubic-bezier(0.33, 1, 0.68, 1)'}, 0)
-                    .to(pc.querySelectorAll('.product-img'),1 ,{ top: '50%', left: '50%', y: '4vw' , height: '23.5vw', easing: 'cubic-bezier(0.33, 1, 0.68, 1)'}, 0)
-                    .to(pc.querySelectorAll('.product-img'),2,{minWidth: '17vw', easing: 'cubic-bezier(0.33, 1, 0.68, 1)'}, 0)
-                    .to(pc.querySelectorAll('.product-img img'), 1 ,{minHeight: '23.5vw', minWidth: '17vw', width: '17vw', easing: 'cubic-bezier(0.33, 1, 0.68, 1)'}, 0)
-                    .fromTo(pc.querySelectorAll('.btn-icon'), 1.5 ,{y:'3vw' , autoAlpha: 0}, {y: 0, autoAlpha: 1, easing: defaultEasing, stagger: .3}, 1)
+                    // .to(pc.querySelectorAll('.product-img'),1 ,{ top: '50%', left: '50%', y: '4vw' , height: '23.5vw', easing: 'cubic-bezier(0.33, 1, 0.68, 1)'}, 0)
+                    // .to(pc.querySelectorAll('.product-img'),2,{minWidth: '17vw', easing: 'cubic-bezier(0.33, 1, 0.68, 1)'}, 0)
+                    // .to(pc.querySelectorAll('.product-img img'), 1 ,{minHeight: '23.5vw', minWidth: '17vw', width: '17vw', easing: 'cubic-bezier(0.33, 1, 0.68, 1)'}, 0)
+                    .fromTo(pc.querySelectorAll('.btn-icon'), 1.5 ,{y:'3vw' , autoAlpha: 0}, {y: 0, autoAlpha: 1, easing: "power3.inOut", stagger: .3}, 1)
 
                     gsap.to(pc.querySelectorAll('.line svg'), 30, {rotation: 360, repeat: -1})
+
+                    
+                    prodImgHover
+                    .to(pc.querySelectorAll('.product-img'),2 ,{ minWidth: "19vw", width: "19vw", height: "24vw",  easing: "power3.inOut"}, 0)
+
 
                     pc.addEventListener('mouseover', function(){
                         //pc.classList.add('active');
                         prodHover.timeScale(1).play();
+                        prodImgHover.timeScale(2).play();
                     })
                     
                     pc.addEventListener('mouseleave', function(){
                         pc.classList.remove('active');
-                        prodHover.timeScale(1).reverse();
+                        prodHover.timeScale(3).reverse();
+                        gsap.delayedCall(0, () =>  prodImgHover.timeScale(2).reverse());
+                       
+
                         //prodHover.restart();
                         //prodHover.pause();
                     })
@@ -164,7 +177,7 @@
     @import '~/assets/scss/_variables.scss';
 
     #product-section{
-        height: 100vh;
+        height: 110vh;
         position: relative;
         overflow: hidden;
     }
@@ -234,6 +247,7 @@
             }
             p{
                 
+                text-align: center;
                     max-width: 33vw;
             }
 

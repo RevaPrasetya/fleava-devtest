@@ -20,6 +20,7 @@
 
     onMounted(() => {
         scrollAnimations();
+        revealAnimations();
     })
 
     
@@ -34,6 +35,25 @@
                 ease: 'cubic-bezier(0.65, 0, 0.35, 1)',
             }
         });
+    }
+
+    function revealAnimations(){
+        let revealAnim = gsap.timeline({
+            scrollTrigger:{
+                trigger: '#hero-section',
+                toggleActions: 'restart none restart none',
+            }
+        })
+        revealAnim.fromTo('#hero-section .container-1 > *', 1 ,{yPercent: 50, autoAlpha: 0}, {yPercent: 0, autoAlpha: 1, stagger: .75, easing: "Power3.inOut"});
+
+        let revealAbout = gsap.timeline({
+            scrollTrigger:{
+                trigger: '#about-section',
+                toggleActions: 'restart none restart none',
+            }
+        })
+        revealAbout.fromTo('#about-section .container > *', 1 ,{yPercent: 50, autoAlpha: 0}, {yPercent: 0, autoAlpha: 1, stagger: .75, easing: "Power3.inOut"});
+
     }
 </script>
 
